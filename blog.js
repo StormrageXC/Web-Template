@@ -59,14 +59,19 @@ function blogPage(entries) {
     </html>
     `;
     return output;
-    z
 }
 server = http.createServer((req, res) => {
-    // const entries = getEntry();
+    const entries = getEntry();
     // const output = blogPage(entries);
-    const template = `<%- entries %>`,
-        entries = `<script>alert(1)</script>`;
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.end(ejs.render(template, { entries }));
+    // const template = `<%- entries %>`,
+    // entries = `<script>alert(1)</script>`;
+    fs.readFile('./blog.ejs', (err, data) => {
+        const template = data.toString();
+        const cache = false,
+            filename = './blog.ejs';
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(ejs.render(template, { entries }, { filename, cache }));
+    })
+
 });
 server.listen(8080);
