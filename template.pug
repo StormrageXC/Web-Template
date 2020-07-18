@@ -1,0 +1,6 @@
+mixin list(objs, prop)
+ ul 
+  each obj in objs
+   li= obj[prop]
+   
++list(messages, 'name')

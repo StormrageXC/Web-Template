@@ -1,0 +1,13 @@
+extends layout
+block title
+ title Message
+ 
+block style
+ link(rel="stylesheet", href= basUrl+"theme/flick/jquery-ui.css")
+
+block append scripts
+ script(scr=basUrl+"jquery-ui.js")
+
+block content
+ each message in messages
+  p= message.name
